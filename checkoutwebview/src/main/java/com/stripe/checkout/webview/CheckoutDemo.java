@@ -157,6 +157,8 @@ public class CheckoutDemo extends ActionBarActivity {
                     dialog.cancel();
                 }
             });
+
+            builder.show();
         }
 
         public void goToUrl(String url){
