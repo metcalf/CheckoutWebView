@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.stripe.checkout.webview.CheckoutDemo" >
+
+    <item android:id="@+id/action_go"
+        android:title="Goto Url"
+        android:icon="@drawable/abc_ic_go"
+        app:showAsAction="always"
+        app:actionProviderClass="com.stripe.checkout.webview.CheckoutDemo$GoActionProvider"
+        />
+
+    <item android:id="@+id/action_allow_multiple_windows"
+        android:title="Multi Window"
+        app:showAsAction="never"
+        android:checkable="true" />
+</menu>
