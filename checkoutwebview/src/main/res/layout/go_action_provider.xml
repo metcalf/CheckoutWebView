@@ -8,12 +8,12 @@
     android:focusable="true"
     android:addStatesFromChildren="true">
 
-    <ImageButton android:id="@+id/go_button"
-        android:background="@drawable/abc_ic_go"
+    <Button android:id="@+id/go_button"
         android:layout_width="32dip"
         android:layout_height="32dip"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:text="Go"/>
 
 </LinearLayout>
