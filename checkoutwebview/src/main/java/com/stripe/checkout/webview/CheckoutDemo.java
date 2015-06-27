@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.os.Message;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,11 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class CheckoutDemo extends ActionBarActivity {
@@ -180,6 +181,7 @@ public class CheckoutDemo extends ActionBarActivity {
 
             mWebView = (WebView) rootView.findViewById(R.id.webView);
             final TextView currentUrl = (TextView) rootView.findViewById(R.id.currentUrl);
+            final ViewGroup webViewContainer = (ViewGroup) rootView.findViewById(R.id.web_view_container);
 
             mWebSettings = mWebView.getSettings();
             mWebSettings.setJavaScriptEnabled(true);
@@ -190,6 +192,21 @@ public class CheckoutDemo extends ActionBarActivity {
                 }
             };
             mWebView.setWebViewClient(client);
+
+            WebChromeClient webChromeClient = new WebChromeClient() {
+                @Override public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
+                    webViewContainer.removeAllViews();
+                    WebView newWebView = new WebView(getActivity());
+                    WebSettings newWebSettings = newWebView.getSettings();
+                    newWebSettings.setJavaScriptEnabled(true);
+                    webViewContainer.addView(newWebView);
+                    WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                    transport.setWebView(newWebView);
+                    resultMsg.sendToTarget();
+                    return true;
+                }
+            };
+            mWebView.setWebChromeClient(webChromeClient);
 
             return rootView;
         }
