@@ -8,12 +8,17 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.stripe.checkout.webview.CheckoutDemo$WebviewFragment">
 
-    <WebView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/webView"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/currentUrl" />
+    <FrameLayout
+        android:id="@+id/web_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <WebView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/webView"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/currentUrl" />
+    </FrameLayout>
 
     <TextView
         android:layout_width="fill_parent"
